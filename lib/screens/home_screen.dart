@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/primary_button.dart';
+import 'profile_screen.dart';
 
 class TopCurveClipper extends CustomClipper<Path> {
   /// depth controls how deep the curve arcs upward (positive = higher arch)
@@ -29,7 +30,8 @@ class TopCurveClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant TopCurveClipper oldClipper) => oldClipper.depth != depth;
+  bool shouldReclip(covariant TopCurveClipper oldClipper) =>
+      oldClipper.depth != depth;
 }
 
 class HomeScreen extends StatelessWidget {
@@ -37,7 +39,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final media = MediaQuery.of(context).size;
+    final media = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -47,11 +49,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Centered logo in the top area
-            Expanded(
-              child: Center(
-                child: HeroBanner(sizeFactor: 0.8),
-              ),
-            ),
+            Expanded(child: Center(child: HeroBanner(sizeFactor: 0.8))),
 
             // Blue shaped container with a single top arch created via ClipPath
             Expanded(
@@ -60,18 +58,26 @@ class HomeScreen extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   color: const Color(0xFF123A70),
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
                   child: Center(
                     child: SingleChildScrollView(
                       physics: const AlwaysScrollableScrollPhysics(),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 2,
+                          vertical: 2,
+                        ),
                         alignment: Alignment.center,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: media.width * 0.9),
+                              constraints: BoxConstraints(
+                                maxWidth: media.width * 0.9,
+                              ),
                               child: Text(
                                 '"Ingin tahu lebih banyak tentang UMSIDA?"',
                                 style: GoogleFonts.montserrat(
@@ -86,11 +92,18 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: 12),
 
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: media.width * 0.9),
+                              constraints: BoxConstraints(
+                                maxWidth: media.width * 0.9,
+                              ),
                               child: Text(
                                 '- Temukan profil, prestasi, dan informasi seputar UMSIDA secara lengkap -',
                                 style: GoogleFonts.montserrat(
-                                  color: const Color.fromRGBO(255, 255, 255, 0.9),
+                                  color: const Color.fromRGBO(
+                                    255,
+                                    255,
+                                    255,
+                                    0.9,
+                                  ),
                                   fontSize: 14,
                                 ),
                                 textAlign: TextAlign.center,
@@ -100,12 +113,18 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: 24),
 
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0,
+                              ),
                               child: PrimaryButton(
                                 text: 'Lihat Profil Kampus',
                                 onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Navigasi ke profil kampus')),
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProfileScreen(),
+                                    ),
                                   );
                                 },
                               ),
@@ -124,4 +143,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
