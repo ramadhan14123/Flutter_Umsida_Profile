@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
-import 'screens/contact_screen.dart'; // tambahkan import untuk ContactScreen
+import 'screens/contact_screen.dart';
 import 'screens/profile_screen.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
+  debugPaintSizeEnabled = false;
   runApp(const MyApp());
 }
 

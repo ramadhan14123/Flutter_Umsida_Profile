@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../widgets/hero_banner.dart';
-import '../widgets/primary_button.dart';
+import '../widgets/first_page/hero_banner.dart';
+import '../widgets/first_page/primary_button.dart';
 import 'profile_screen.dart';
 
 class TopCurveClipper extends CustomClipper<Path> {
