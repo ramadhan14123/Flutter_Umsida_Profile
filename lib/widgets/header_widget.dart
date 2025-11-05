@@ -13,10 +13,6 @@ class HeaderWidget extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Color(0xFF0A3471), // warna biru tua seperti di gambar
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
       ),
       padding: const EdgeInsets.only(top: 30, left: 16, right: 16, bottom: 10),
       child: Row(
