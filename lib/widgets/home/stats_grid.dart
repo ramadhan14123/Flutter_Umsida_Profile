@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class StatsGrid extends StatelessWidget {
   const StatsGrid({super.key});
@@ -8,16 +9,16 @@ class StatsGrid extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: const Color(0xFFF3F9FF),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFF2B63C8), width: 2),
+        color: AppColors.surfaceBlue,
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: AppColors.primaryBlueBorder, width: 2),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 52, color: const Color(0xFF123A70)),
+            Icon(icon, size: 52, color: AppColors.primaryBlue),
             const SizedBox(height: 0),
             Text(
               value,

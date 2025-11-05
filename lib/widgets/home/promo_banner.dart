@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class PromoBanner extends StatelessWidget {
   const PromoBanner({super.key});
@@ -13,7 +14,7 @@ class PromoBanner extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         decoration: BoxDecoration(
-          color: const Color(0xFF123A70),
+          color: AppColors.primaryBlue,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -35,7 +36,7 @@ class PromoBanner extends StatelessWidget {
               child: Text(
                 'Telah Dibuka. Sebagai Perguruan Tinggi yang unggul dan inovatif, Umsida menjadi pilihan tepat yang memberikan pendidikan secara profesional untuk mencetak generasi hebat dan menemukan minat di bidang IPTEKS berlandaskan nilai islam',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white.withOpacity(0.95),
+                  color: Colors.white.withValues(alpha: 0.95),
                   fontSize: 13,
                   height: 1.3,
                 ),
@@ -48,7 +49,7 @@ class PromoBanner extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFF28C2B),
+                  backgroundColor: AppColors.accentOrange,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

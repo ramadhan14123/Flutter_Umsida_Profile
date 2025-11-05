@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 /// Reusable image carousel widget.
 ///
@@ -109,7 +110,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                     margin: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _current == idx ? const Color(0xff013066) : const Color(0x4D013066),
+                      color: _current == idx ? AppColors.indicatorActive : AppColors.indicatorInactive,
                     ),
                   ),
                 );  
