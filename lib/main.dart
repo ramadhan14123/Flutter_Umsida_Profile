@@ -6,11 +6,25 @@ import 'package:flutter/rendering.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final GlobalKey<NavigatorState> _navigatorKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _navigatorKey = GlobalKey<NavigatorState>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +34,36 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
       ),
-
+      navigatorKey: _navigatorKey,
       initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/home': (context) => const ProfileScreen(),
-        '/contact': (context) => const ContactScreen(),
+      onGenerateRoute: (settings) {
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (context, animation, secondaryAnimation) {
+            switch (settings.name) {
+              case '/':
+                return const HomeScreen();
+              case '/home':
+                return const ProfileScreen();
+              case '/contact':
+                return const ContactScreen();
+              default:
+                return const HomeScreen();
+            }
+          },
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return child;
+          },
+        );
       },
     );
   }
