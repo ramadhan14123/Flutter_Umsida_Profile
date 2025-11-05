@@ -79,9 +79,14 @@ class FacultyList extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        ...category.programs.map((program) {
-          return _buildProgramItem(program);
-        }).toList(),
+        SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: category.programs.map((program) {
+              return _buildProgramItem(program);
+            }).toList(),
+          ),
+        ),
         const SizedBox(height: 16),
       ],
     );
@@ -89,6 +94,7 @@ class FacultyList extends StatelessWidget {
 
   Widget _buildProgramItem(String program) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: Colors.white,
