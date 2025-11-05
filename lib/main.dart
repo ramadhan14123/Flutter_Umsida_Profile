@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/contact_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/faculty_screen.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
@@ -54,6 +55,8 @@ class _MyAppState extends State<MyApp> {
                 return const ProfileScreen();
               case '/contact':
                 return const ContactScreen();
+              case '/faculty':
+                return const FacultyScreen();
               default:
                 return const HomeScreen();
             }
