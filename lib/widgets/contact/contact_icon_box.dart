@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class ContactIconBox extends StatelessWidget {
   final IconData icon;
@@ -9,7 +10,7 @@ class ContactIconBox extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: const Color(0xFF0A3471),
+        color: AppColors.primaryBlue,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Icon(icon, color: Colors.white, size: 20),

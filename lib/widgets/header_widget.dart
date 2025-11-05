@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class HeaderWidget extends StatelessWidget {
   final VoidCallback? onBackPressed; // aksi tombol back
@@ -12,7 +13,7 @@ class HeaderWidget extends StatelessWidget {
       height: 100,
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: Color(0xFF0A3471), // warna biru tua seperti di gambar
+        color: AppColors.primaryBlue, // gunakan warna biru tua dari AppColors
       ),
       padding: const EdgeInsets.only(top: 30, left: 16, right: 16, bottom: 10),
       child: Row(

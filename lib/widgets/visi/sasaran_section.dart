@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class SasaranSection extends StatelessWidget {
   const SasaranSection({super.key});
@@ -34,12 +35,12 @@ class SasaranSection extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF003B84),
+                color: AppColors.primaryBlue,
               ),
             ),
           ),
           const SizedBox(height: 8),
-          Container(height: 1, color: const Color(0xFF003B84)),
+          Container(height: 1, color: AppColors.primaryBlue),
           const SizedBox(height: 12),
           for (int i = 0; i < items.length; i++)
             Padding(
@@ -49,7 +50,7 @@ class SasaranSection extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 12,
-                    backgroundColor: const Color(0xFF003B84),
+                    backgroundColor: AppColors.primaryBlue,
                     child: Text(
                       '${i + 1}',
                       style: const TextStyle(

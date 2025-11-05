@@ -5,6 +5,7 @@ import '../widgets/visi/tujuan_section.dart';
 import '../widgets/visi/sasaran_section.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/footer.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class VisiScreen extends StatefulWidget {
   const VisiScreen({super.key});
@@ -53,7 +54,7 @@ class _VisiScreenState extends State<VisiScreen> {
               children: [
                 Stack(
                   children: [
-                    Container(height: 250, color: const Color(0xFF003B84)),
+                    Container(height: 250, color:AppColors.primaryBlue),
                     Positioned.fill(
                       child: Align(
                         alignment: Alignment.bottomCenter,

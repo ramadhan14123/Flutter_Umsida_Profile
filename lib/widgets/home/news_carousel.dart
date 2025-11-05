@@ -33,7 +33,6 @@ class _NewsCarouselState extends State<NewsCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Column(
@@ -107,18 +106,21 @@ class _NewsCarouselState extends State<NewsCarousel> {
                       // content area
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 item['title']!,
-                                style: theme.textTheme.bodyLarge?.copyWith(
+                                style: GoogleFonts.poppins(
                                   fontSize: 14,
                                   height: 1.3,
+                                  fontWeight: FontWeight.w400,
                                   color: Colors.black87,
                                 ),
                                 textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
 
                               const SizedBox(height: 8),
@@ -131,7 +133,7 @@ class _NewsCarouselState extends State<NewsCarousel> {
                                   child: ElevatedButton(
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.primaryBlueBorder,
+                                      backgroundColor: AppColors.primaryBlue,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                     ),
                                     child: Text('Lihat', style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.surfaceBlue)),

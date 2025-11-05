@@ -22,7 +22,11 @@ class StatsGrid extends StatelessWidget {
             const SizedBox(height: 0),
             Text(
               value,
-              style:GoogleFonts.montserrat(fontWeight: FontWeight.w800,fontSize: 24,color: const Color(0xFF123A70))),
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w800,
+                fontSize: 24,
+                color: AppColors.primaryBlue,
+              )),
             const SizedBox(height: 4),
             Text(
               label,

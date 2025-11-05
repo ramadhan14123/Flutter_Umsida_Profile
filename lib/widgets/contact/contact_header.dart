@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class ContactHeader extends StatelessWidget implements PreferredSizeWidget {
   const ContactHeader({super.key});
@@ -6,7 +7,7 @@ class ContactHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFF0A3471),
+      backgroundColor: AppColors.primaryBlue,
       title: const Text(
         'Kontak',
         style: TextStyle(

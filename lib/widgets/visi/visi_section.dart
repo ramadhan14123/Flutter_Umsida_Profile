@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class VisiSection extends StatelessWidget {
   const VisiSection({super.key});
@@ -26,11 +27,11 @@ class VisiSection extends StatelessWidget {
             title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color(0xFF003B84),
+              color: AppColors.primaryBlue,
             ),
           ),
           const SizedBox(height: 8),
-          Container(height: 1, color: const Color(0xFF003B84)),
+          Container(height: 1, color: AppColors.primaryBlue),
           const SizedBox(height: 12),
           Text(
             content,

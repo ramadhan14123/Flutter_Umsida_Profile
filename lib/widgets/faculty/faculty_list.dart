@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class FacultyCategory {
   final String title;
@@ -65,7 +66,7 @@ class FacultyList extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFF0A3471),
+            color: AppColors.primaryBlue,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'contact_icon_box.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 class ContactEmailCard extends StatelessWidget {
   const ContactEmailCard({super.key});
@@ -38,7 +39,7 @@ class ContactEmailCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0A3471),
+                  color: AppColors.primaryBlue,
                 ),
               ),
             ],
@@ -51,7 +52,7 @@ class ContactEmailCard extends StatelessWidget {
           const SizedBox(height: 12),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF0A3471),
+              backgroundColor: AppColors.primaryBlue,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
