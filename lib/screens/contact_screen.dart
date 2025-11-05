@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/contact/contact_header.dart';
 import '../widgets/contact/contact_chat_card.dart';
 import '../widgets/contact/contact_email_card.dart';
 import '../widgets/contact/contact_address_card.dart';
 import '../widgets/footer.dart';
+import '../widgets/header_widget.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -23,18 +23,45 @@ class _ContactScreenState extends State<ContactScreen>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: const ContactHeader(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: const [
-            ContactChatCard(),
-            ContactEmailCard(),
-            ContactAddressCard(),
-          ],
-        ),
+      backgroundColor: Colors.white,
+
+      body: Stack(
+        children: [
+          // 🔹 Konten utama bisa di-scroll
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(
+              top: 100,
+            ), // beri jarak setinggi header
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: const [
+                  ContactChatCard(),
+                  SizedBox(height: 12),
+                  ContactEmailCard(),
+                  SizedBox(height: 12),
+                  ContactAddressCard(),
+                ],
+              ),
+            ),
+          ),
+
+          // 🔹 Header tetap di atas (absolute)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: HeaderWidget(
+              logoPath: 'assets/images/logo1.png',
+              onBackPressed: () {
+                Navigator.pushReplacementNamed(context, '/home');
+              },
+            ),
+          ),
+        ],
       ),
+
+      // 🔹 Footer navigasi
       bottomNavigationBar: CustomFooter(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -54,7 +81,7 @@ class _ContactScreenState extends State<ContactScreen>
         Navigator.pushReplacementNamed(context, '/home');
         break;
       case 3:
-        // Already on contact screen
+        // Sudah di halaman contact
         break;
     }
   }

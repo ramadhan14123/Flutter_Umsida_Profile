@@ -20,7 +20,7 @@ class ContactChatCard extends StatelessWidget {
       title: 'Chat',
       content:
           'Live Chat dan WhatsApp tersedia setiap hari kerja pukul 08.00–16.00 WIB (kecuali hari libur nasional).',
-      buttonText: 'Live Chat',
+      buttonText: 'Chat',
       onPressed: _launchWhatsApp,
     );
   }

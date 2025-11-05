@@ -4,6 +4,7 @@ import 'screens/contact_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/faculty_screen.dart';
 import 'package:flutter/rendering.dart';
+import 'screens/visi_screen.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -53,6 +54,8 @@ class _MyAppState extends State<MyApp> {
                 return const HomeScreen();
               case '/home':
                 return const ProfileScreen();
+              case '/goal':
+                return const VisiScreen();
               case '/contact':
                 return const ContactScreen();
               case '/faculty':

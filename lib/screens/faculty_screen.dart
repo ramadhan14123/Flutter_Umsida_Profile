@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/faculty/faculty_header.dart';
+import '../widgets/header_widget.dart';
 import '../widgets/faculty/faculty_list.dart';
 import '../widgets/footer.dart';
 
@@ -21,7 +21,15 @@ class _FacultyScreenState extends State<FacultyScreen>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: const FacultyHeader(),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: HeaderWidget(
+          logoPath: 'assets/images/logo1.png',
+          onBackPressed: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
+      ),
       body: FacultyList(),
       bottomNavigationBar: CustomFooter(
         currentIndex: _currentIndex,
