@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomFooter extends StatelessWidget {
   final int currentIndex;
@@ -12,11 +13,13 @@ class CustomFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Warna background halaman utama
     final Color scaffoldBg = Theme.of(context).scaffoldBackgroundColor;
 
+    // Warna ikon
+    const Color selectedColor = Colors.orange;
+    const Color unselectedColor = Colors.black54;
+
     return Container(
-      // pastikan warna luar sama persis dengan Scaffold
       color: scaffoldBg,
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
@@ -67,29 +70,65 @@ class CustomFooter extends StatelessWidget {
               },
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              selectedItemColor: Colors.orange,
-              unselectedItemColor: Colors.black54,
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
+                  icon: _buildSvgIcon(
+                    'assets/icon/homee.svg',
+                    isSelected: currentIndex == 0,
+                    selectedColor: selectedColor,
+                    unselectedColor: unselectedColor,
+                  ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.track_changes_outlined),
+                  icon: _buildSvgIcon(
+                    'assets/icon/target-hit.svg',
+                    isSelected: currentIndex == 1,
+                    selectedColor: selectedColor,
+                    unselectedColor: unselectedColor,
+                  ),
                   label: 'Goal',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.menu_book_outlined),
+                  icon: _buildSvgIcon(
+                    'assets/icon/book.svg',
+                    isSelected: currentIndex == 2,
+                    selectedColor: selectedColor,
+                    unselectedColor: unselectedColor,
+                  ),
                   label: 'Info',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.phone_outlined),
+                  icon: _buildSvgIcon(
+                    'assets/icon/call.svg',
+                    isSelected: currentIndex == 3,
+                    selectedColor: selectedColor,
+                    unselectedColor: unselectedColor,
+                  ),
                   label: 'Contact',
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  /// Widget pembuat ikon SVG
+  static Widget _buildSvgIcon(
+    String assetPath, {
+    required bool isSelected,
+    required Color selectedColor,
+    required Color unselectedColor,
+  }) {
+    return SvgPicture.asset(
+      assetPath,
+      width: 26,
+      height: 26,
+      colorFilter: ColorFilter.mode(
+        isSelected ? selectedColor : unselectedColor,
+        BlendMode.srcIn,
       ),
     );
   }
