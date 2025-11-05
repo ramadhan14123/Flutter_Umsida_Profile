@@ -26,49 +26,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: HeaderWidget(logoPath: 'assets/images/logo1.png'),
+      ),
+      // Use a scrollable ListView so the screen doesn't overflow on small devices.
+      // The previous Column could overflow when the combined children are taller than
+      // the available viewport. ListView makes the content scrollable instead.
+      body: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          // Content dengan scroll
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(
-              top: 100,
-            ), // Memberikan ruang untuk header
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: ImageCarousel(
-                    items: const [
-                      'assets/images/banner-1.jpg',
-                      'assets/images/banner-2.jpg',
-                      'assets/images/banner-3.jpg',
-                    ],
-                    isNetwork: false,
-                    height: 175,
-                    autoPlay: true,
-                  ),
-                ),
-                // Elements setelah carousel
-                const StatsGrid(),
-                const PromoBanner(),
-                const NewsCarousel(),
-                const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: ImageCarousel(
+              items: const [
+                'assets/images/banner-1.jpg',
+                'assets/images/banner-2.jpg',
+                'assets/images/banner-3.jpg',
               ],
+              isNetwork: false,
+              height: 175,
+              autoPlay: true,
             ),
           ),
 
-          // Header yang tetap di posisi atas
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: HeaderWidget(
-              logoPath: 'assets/images/logo1.png',
-              onBackPressed: () {
-                Navigator.pushReplacementNamed(context, '/');
-              },
-            ),
-          ),
+          const StatsGrid(),
+
+          // promo banner under stats
+          const PromoBanner(),
+
+          // News carousel under promo
+          const NewsCarousel(),
+
+          const SizedBox(height: 8),
         ],
       ),
       bottomNavigationBar: CustomFooter(
