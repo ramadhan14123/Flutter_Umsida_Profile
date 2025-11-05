@@ -1,118 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../widgets/first_page/hero_banner.dart';
-import '../widgets/first_page/primary_button.dart';
-import 'profile_screen.dart';
+import '../widgets/footer.dart';
+import '../widgets/header_widget.dart';
+import '../widgets/home/image_carousel.dart';
+import '../widgets/home/stats_grid.dart';
+import '../widgets/home/promo_banner.dart';
+import '../widgets/home/news_carousel.dart';
 
-class TopCurveClipper extends CustomClipper<Path> {
-  /// depth controls how deep the curve arcs upward (positive = higher arch)
-  final double depth;
-
-  TopCurveClipper({this.depth = 40});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.moveTo(0, depth);
-    path.quadraticBezierTo(size.width * 0.5, -depth, size.width, depth);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.close();
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
 
-    return path;
+class _ProfileScreenState extends State<ProfileScreen> {
+  int currentIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 
   @override
-  bool shouldReclip(covariant TopCurveClipper oldClipper) =>
-      oldClipper.depth != depth;
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-
-            const Expanded(
-              child: Center(child: HeroBanner(sizeFactor: 0.8)),
-            ),
-            Expanded(
-              child: ClipPath(
-                clipper: TopCurveClipper(depth: 50),
-                child: Container(
-                  width: double.infinity,
-                  color: const Color(0xFF123A70),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: media.width * 0.9,
-                          ),
-                          child: Text(
-                            '"Ingin tahu lebih banyak tentang UMSIDA?"',
-                            style: GoogleFonts.montserrat(
-                              color: Colors.white,
-                              fontSize: 26,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-
-                        const SizedBox(height: 12),
-
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: media.width * 0.9,
-                          ),
-                          child: Text(
-                            '- Temukan profil, prestasi, dan informasi seputar UMSIDA secara lengkap -',
-                            style: GoogleFonts.montserrat(
-                              color: const Color.fromRGBO(255, 255, 255, 0.9),
-                              fontSize: 14,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-
-                        const SizedBox(height: 24),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: PrimaryButton(
-                            text: 'Lihat Profil Kampus',
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ProfileScreen(),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+      body: Stack(
+        children: [
+          // Content dengan scroll
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(
+              top: 100,
+            ), // Memberikan ruang untuk header
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: ImageCarousel(
+                    items: const [
+                      'assets/images/banner-1.jpg',
+                      'assets/images/banner-2.jpg',
+                      'assets/images/banner-3.jpg',
+                    ],
+                    isNetwork: false,
+                    height: 175,
+                    autoPlay: true,
                   ),
                 ),
-              ),
+                // Elements setelah carousel
+                const StatsGrid(),
+                const PromoBanner(),
+                const NewsCarousel(),
+                const SizedBox(height: 8),
+              ],
             ),
-          ],
-        ),
+          ),
+
+          // Header yang tetap di posisi atas
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: HeaderWidget(
+              logoPath: 'assets/images/logo1.png',
+              onBackPressed: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: CustomFooter(
+        currentIndex: currentIndex,
+        onTap: onTabTapped,
       ),
     );
   }

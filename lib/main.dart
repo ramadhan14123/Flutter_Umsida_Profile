@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'screens/landing_page.dart';
 import 'screens/contact_screen.dart';
-import 'screens/profile_screen.dart';
+import 'screens/home_screen.dart';
 import 'screens/faculty_screen.dart';
 import 'package:flutter/rendering.dart';
 import 'screens/visi_screen.dart';

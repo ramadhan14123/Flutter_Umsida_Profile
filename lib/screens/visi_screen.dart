@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/footer.dart';
-import '../widgets/header_widget.dart';
 import '../widgets/visi/visi_section.dart';
 import '../widgets/visi/misi_section.dart';
 import '../widgets/visi/tujuan_section.dart';
 import '../widgets/visi/sasaran_section.dart';
+import '../widgets/header_widget.dart';
+import '../widgets/footer.dart';
 
 class VisiScreen extends StatefulWidget {
   const VisiScreen({super.key});
@@ -14,68 +14,89 @@ class VisiScreen extends StatefulWidget {
 }
 
 class _VisiScreenState extends State<VisiScreen> {
-  int _currentIndex = 2; // Index untuk footer navigation
+  late Image _rektorImage;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // siapkan instance gambar
+    _rektorImage = Image.asset(
+      'assets/images/rektor12.png',
+      height: 200,
+      fit: BoxFit.contain,
+    );
+
+    // pastikan dipanggil setelah frame pertama
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      precacheImage(_rektorImage.image, context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F7FB),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: HeaderWidget(
+          logoPath: 'assets/images/logo1.png',
+          onBackPressed: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
+      ),
       body: Stack(
         children: [
-          // Content yang bisa di-scroll
           SingleChildScrollView(
-            padding: const EdgeInsets.only(
-              top: 100,
-            ), // Memberikan ruang untuk header
             child: Column(
-              children: const [
-                VisiSection(),
-                MisiSection(),
-                TujuanSection(),
-                SasaranSection(),
-                SizedBox(height: 20), // Padding bottom
+              children: [
+                Stack(
+                  children: [
+                    Container(height: 250, color: const Color(0xFF003B84)),
+                    Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: _rektorImage,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const VisiSection(),
+                const SizedBox(height: 20),
+                const MisiSection(),
+                const SizedBox(height: 20),
+                const TujuanSection(),
+                const SizedBox(height: 20),
+                const SasaranSection(),
+                const SizedBox(height: 100),
               ],
             ),
           ),
-
-          // Header yang tetap di posisi atas
           Positioned(
-            top: 0,
             left: 0,
             right: 0,
-            child: HeaderWidget(
-              logoPath: 'assets/images/logo1.png',
-              onBackPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
+            bottom: 0,
+            child: CustomFooter(
+              currentIndex: 1,
+              onTap: (index) {
+                switch (index) {
+                  case 0:
+                    Navigator.pushReplacementNamed(context, '/home');
+                    break;
+                  case 2:
+                    Navigator.pushReplacementNamed(context, '/faculty');
+                    break;
+                  case 3:
+                    Navigator.pushReplacementNamed(context, '/contact');
+                    break;
+                }
               },
             ),
           ),
         ],
       ),
-      bottomNavigationBar: CustomFooter(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() => _currentIndex = index);
-          _navigateToRoute(index);
-        },
-      ),
     );
-  }
-
-  void _navigateToRoute(int index) {
-    switch (index) {
-      case 0:
-        Navigator.pushReplacementNamed(context, '/');
-        break;
-      case 1:
-        Navigator.pushReplacementNamed(context, '/home');
-        break;
-      case 2:
-        // Sudah di halaman visi
-        break;
-      case 3:
-        Navigator.pushReplacementNamed(context, '/contact');
-        break;
-    }
   }
 }
