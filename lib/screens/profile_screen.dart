@@ -29,9 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text('Profil UMSIDA'),
         backgroundColor: Colors.deepPurple.shade100,
       ),
-      // Use a scrollable ListView so the screen doesn't overflow on small devices.
-      // The previous Column could overflow when the combined children are taller than
-      // the available viewport. ListView makes the content scrollable instead.
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -48,26 +45,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               autoPlay: true,
             ),
           ),
-
+          // Elements setelah carousel
           const StatsGrid(),
-
-          // promo banner under stats
           const PromoBanner(),
-
-          // News carousel under promo
           const NewsCarousel(),
-
           const SizedBox(height: 8),
-
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: Text(
-                'Halaman ke-${currentIndex + 1}',
-                style: const TextStyle(fontSize: 20),
-              ),
-            ),
-          ),
         ],
       ),
       bottomNavigationBar: CustomFooter(

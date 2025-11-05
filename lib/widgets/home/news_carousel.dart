@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:umsida_profile/theme/app_colors.dart';
 
 /// A simple horizontal news card carousel matching the provided design.
 class NewsCarousel extends StatefulWidget {
@@ -54,12 +55,12 @@ class _NewsCarouselState extends State<NewsCarousel> {
               // fixed image height (will be cropped if aspect ratio mismatch)
               const imageHeight = 140.0;
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFF123A70), width: 2),
+                    border: Border.all(color: AppColors.primaryBlue, width: 2),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -82,7 +83,7 @@ class _NewsCarouselState extends State<NewsCarousel> {
                               errorBuilder: (context, error, stackTrace) => Container(
                                 width: double.infinity,
                                 height: imageHeight,
-                                color: Colors.grey[200],
+                                color: AppColors.surfaceBlue,
                                 child: const Center(child: Icon(Icons.broken_image, size: 36, color: Colors.grey)),
                               ),
                             );
@@ -130,10 +131,10 @@ class _NewsCarouselState extends State<NewsCarousel> {
                                   child: ElevatedButton(
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF2B63C8),
+                                      backgroundColor: AppColors.primaryBlueBorder,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                     ),
-                                    child: Text('Lihat', style: GoogleFonts.montserrat(fontSize: 14)),
+                                    child: Text('Lihat', style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.surfaceBlue)),
                                   ),
                                 ),
                               ),
@@ -148,13 +149,11 @@ class _NewsCarouselState extends State<NewsCarousel> {
             },
             options: CarouselOptions(
               height: 280,
-              // make each item narrower than before so the card looks smaller
-              viewportFraction: 0.66,
+              viewportFraction: 0.56,
               enlargeCenterPage: false,
               enableInfiniteScroll: false,
               autoPlay: false,
-              // keep small end padding so items align nicely
-              padEnds: true,
+              padEnds: false,
             ),
           ),
         ],
